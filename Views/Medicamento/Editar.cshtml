@@ -10,9 +10,11 @@
 
 </div>
 
+@* asp-route-id="@Model.Id" *@
+
 <form asp-controller="Medicamento" asp-action="Alterar" asp-route-id="@Model.Id" method="post">
 
-    @* <input type="hidden" asp-for="Id"/> *@
+    <input type="hidden" asp-for="Id"/>
 
     <div class="mb-3">
         <label for="nome" class="form-label">Nome</label>
@@ -21,12 +23,12 @@
     </div>
     <div class="mb-3">
         <label for="dataFabricacao" class="form-label">Data de Fabricação</label>
-        <input type="text" asp-for="DataFabricacao" class="form-control" placeholder="Data de Fabricação do Medicamento">
+        <input type="date" asp-for="DataFabricacao" class="form-control" placeholder="Data de Fabricação do Medicamento">
         @Html.ValidationMessageFor(x => x.DataFabricacao)
     </div>
     <div class="mb-3">
         <label for="dataValdiade" class="form-label">Data de Validade</label>
-        <input type="text" asp-for="DataVencimento" class="form-control" placeholder="Data de Validade do Medicamento">
+        <input type="date" asp-for="DataVencimento" class="form-control" placeholder="Data de Validade do Medicamento">
         @Html.ValidationMessageFor(x => x.DataVencimento)
     </div>
     <div class="mb-3">
