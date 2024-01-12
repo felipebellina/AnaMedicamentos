@@ -1,0 +1,68 @@
+﻿@model List<MedicamentoModel>
+
+@{
+    ViewData["Title"] = "Controle de Medicamentos";
+}
+
+<div class="text-center">
+
+    
+    <h1 class="display-4">Listagem de Medicamentos</h1>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        <a class="btn btn-primary" role="button" asp-controller="Medicamento" asp-action="Criar">Adicionar novo medicamento</a>
+    </div>
+    <br />
+
+    @if (TempData["MensagemSucesso"] is not null)
+    {
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+            @TempData["MensagemSucesso"]
+        </div>
+    }
+
+    @if (TempData["MensagemErro"] is not null)
+    {
+        <div class="alert alert-danger" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+            @TempData["MensagemErro"]
+        </div>
+    }
+
+    <br />
+
+    <table class="table" id="talbe-medicamentos">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome Medicamento</th>
+                <th scope="col">Data Fabricação</th>
+                <th scope="col">Data de Validade</th>
+                <th scope="col">Descrição</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            
+                @if(Model != null && Model.Any())
+                {
+                    foreach (var medicamento in Model)
+                    {
+                        <tr>
+                            <th scope="row">@medicamento.Id</th>
+                            <td>@medicamento.NomeMedicamento</td>
+                            <td>@medicamento.DataFabricacao</td>
+                            <td>@medicamento.DataVencimento</td>
+                            <td>@medicamento.Descricao</td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <a role="button" class="btn btn-primary" asp-route-id="@medicamento.Id" asp-controller="Medicamento" asp-action="Editar">Editar</a>
+                                    <a role="button" class="btn btn-secondary" asp-route-id="@medicamento.Id" asp-controller="Medicamento" asp-action="ApagarConfirmacao">Apagar</a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                } 
+        </tbody>
+    </table>
+</div>

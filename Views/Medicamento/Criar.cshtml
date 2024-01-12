@@ -1,0 +1,36 @@
+﻿@model MedicamentoModel
+@{
+    ViewData["Title"] = "Criar Medicamento";
+}
+
+<div class="text-center">
+
+    <h1 class="display-4">Cadastrar Medicamento</h1>
+
+</div>
+
+<form asp-controller="Medicamento" asp-action="Criar" method="post">
+    <div class="mb-3">
+        <label for="nomeMedicamento" class="form-label">Nome</label>
+        <input type="text" asp-for="NomeMedicamento" class="form-control" placeholder="Nome do Medicamento">
+        @Html.ValidationMessageFor(x => x.NomeMedicamento)
+    </div>
+    <div class="mb-3">
+        <label for="DataFabricacao" class="form-label">Data de Fabricação</label>
+        <input type="text" asp-for="DataFabricacao" class="form-control" placeholder="Data de Fabricação do Medicamento">
+        @Html.ValidationMessageFor(x => x.DataFabricacao)
+    </div>
+    <div class="mb-3">
+        <label for="dataValdiade" class="form-label">Data de Validade</label>
+        <input type="text" asp-for="DataVencimento" class="form-control" placeholder="Data de Validade do Medicamento">
+        @Html.ValidationMessageFor(x => x.DataVencimento)
+    </div>
+    <div class="mb-3">
+        <label for="descricao" class="form-label">Descrição</label>
+        <input type="text" asp-for="Descricao" class="form-control" placeholder="Descrição do Medicamento">
+        @Html.ValidationMessageFor(x => x.Descricao)
+    </div>
+
+    <button type="submit" class="btn btn-primary">Adicionar</button>
+    <a class="btn btn-secondary" asp-controller="Medicamento" asp-action="Index" role="button">Voltar</a>
+</form>
