@@ -1,9 +1,11 @@
-﻿using ControleMedicamentos.Models;
+﻿using ControleMedicamentos.Filters;
+using ControleMedicamentos.Models;
 using ControleMedicamentos.Repositorio;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ControleMedicamentos.Controllers;
 
+[PaginaParaUsuarioLogado]
 public class MedicamentoController : Controller
 {
     private readonly IMedicamentoRepositorio _medicamentoRepositorio;

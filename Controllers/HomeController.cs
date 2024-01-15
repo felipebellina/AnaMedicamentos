@@ -1,9 +1,11 @@
+using ControleMedicamentos.Filters;
 using ControleMedicamentos.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace ControleMedicamentos.Controllers;
 
+[PaginaParaUsuarioLogado]
 public class HomeController : Controller
 {
     
