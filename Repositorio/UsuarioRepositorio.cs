@@ -14,6 +14,7 @@ public class UsuarioRepositorio : IUsuarioRepositorio
     {
         //add no DB
         usuario.DataDeCadastro = DateTime.Now;
+        usuario.SetSenhaHash();
         _dbContext.Usuarios.Add(usuario);
         _dbContext.SaveChanges();
         return usuario;

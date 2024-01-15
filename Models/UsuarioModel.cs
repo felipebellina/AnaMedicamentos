@@ -1,4 +1,5 @@
 ﻿using ControleMedicamentos.Enums;
+using ControleMedicamentos.Helper;
 using System.ComponentModel.DataAnnotations;
 
 namespace ControleMedicamentos.Models;
@@ -21,6 +22,11 @@ public class UsuarioModel
     public DateTime? DataAtualização { get; set; }
     public bool SenhaValida (string senha)
     {
-        return Senha.Equals(senha);
+        return Senha.Equals(senha.GerarHash());
+    }
+
+    public void SetSenhaHash()
+    {
+        Senha = Senha.GerarHash();
     }
 }
