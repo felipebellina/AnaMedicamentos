@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ControleMedicamentos.Controllers;
 
-[PaginaParaUsuarioLogado]
+[PaginaRestritaSomenteAdmin]
 public class UsuarioController : Controller
 {
     private readonly IUsuarioRepositorio _usuarioRepositorio;
