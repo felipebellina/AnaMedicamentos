@@ -26,6 +26,11 @@ public class LoginController : Controller
         return View();
     }
 
+    public IActionResult RedefinirSenha()
+    {
+        return View();
+    }
+
     public IActionResult Sair()
     {
         _sessao.RemoverSessaoDoUsuario();
@@ -62,6 +67,33 @@ public class LoginController : Controller
         catch (Exception mensagem)
         {
             TempData["MensagemErro"] = $"Ops, não conseguimos realizar seu login. Detalhes do erro {mensagem.Message}";
+            return RedirectToAction("Index");
+        }
+    }
+
+    [HttpPost]
+    public IActionResult EnviarLinkParaRedefinirSenha(RedefinirSenhaModel redefinirSenhaModel)
+    {
+        try
+        {
+            if (ModelState.IsValid)
+            {
+                UsuarioModel usuario = _usuarioRepositorio.BuscarPorEmailELogin(redefinirSenhaModel.Email, redefinirSenhaModel.Login);
+
+                if (usuario is not null)
+                {
+                    TempData["MensagemSucesso"] = $"Não conseguimos redefinir sua senha. Por favor verifique os dados informados.1";
+                    return RedirectToAction("Index", "Login");
+                }
+
+                TempData["MensagemErro"] = $"Não conseguimos redefinir sua senha. Por favor verifique os dados informados.";
+            }
+
+            return View("Index");
+        }
+        catch (Exception mensagem)
+        {
+            TempData["MensagemErro"] = $"Ops, não conseguimos redefinir sua senha. Detalhes do erro: {mensagem.Message}";
             return RedirectToAction("Index");
         }
     }

@@ -29,4 +29,9 @@ public class UsuarioModel
     {
         Senha = Senha.GerarHash();
     }
+
+    public void SetNovaSenha(string novaSenha)
+    {
+        Senha = novaSenha.GerarHash();
+    }
 }
