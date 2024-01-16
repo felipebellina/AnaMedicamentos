@@ -61,8 +61,8 @@ public class MedicamentoRepositorio : IMedicamentoRepositorio
         return _dbContext.Medicamentos.FirstOrDefault(x => x.Id == id);
     }
 
-    public List<MedicamentoModel> ListarTodos()
+    public List<MedicamentoModel> ListarTodos(int usuarioId)
     {
-        return _dbContext.Medicamentos.ToList();
+        return _dbContext.Medicamentos.Where(x => x.UsuarioId == usuarioId).ToList();
     }
 }

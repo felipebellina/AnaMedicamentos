@@ -1,4 +1,5 @@
 ﻿using ControleMedicamentos.Filters;
+using ControleMedicamentos.Helper;
 using ControleMedicamentos.Models;
 using ControleMedicamentos.Repositorio;
 using Microsoft.AspNetCore.Mvc;
@@ -9,13 +10,16 @@ namespace ControleMedicamentos.Controllers;
 public class MedicamentoController : Controller
 {
     private readonly IMedicamentoRepositorio _medicamentoRepositorio;
-    public MedicamentoController(IMedicamentoRepositorio medicamentoRepositorio)
+    private readonly ISessao _sessao;
+    public MedicamentoController(IMedicamentoRepositorio medicamentoRepositorio, ISessao sessao)
     {
         _medicamentoRepositorio = medicamentoRepositorio;
+        _sessao = sessao;
     }
     public IActionResult Index()
     {
-        var medicamentos = _medicamentoRepositorio.ListarTodos();
+        var usuarioLogado = _sessao.BuscarSessaoDoUsuario();
+        var medicamentos = _medicamentoRepositorio.ListarTodos(usuarioLogado.Id);
 
         return View(medicamentos);
     }
@@ -47,6 +51,10 @@ public class MedicamentoController : Controller
             {
                 return View(medicamento);
             }
+
+            var usuarioLogado = _sessao.BuscarSessaoDoUsuario();
+            medicamento.UsuarioId = usuarioLogado.Id;
+
             _medicamentoRepositorio.Adicionar(medicamento);
             TempData["MensagemSucesso"] = "Medicamento cadastrado com sucesso.";
             return RedirectToAction("Index");
@@ -69,6 +77,9 @@ public class MedicamentoController : Controller
             {
                 return View("Editar", medicamento);
             }
+            var usuarioLogado = _sessao.BuscarSessaoDoUsuario();
+            medicamento.UsuarioId = usuarioLogado.Id;
+
             _medicamentoRepositorio.Atualizar(medicamento);
             TempData["MensagemSucesso"] = "Medicamento alterado com sucesso.";
             return RedirectToAction("Index");

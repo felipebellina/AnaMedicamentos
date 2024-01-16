@@ -16,4 +16,6 @@ public class MedicamentoModel
     [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
     public DateTime DataVencimento { get; set; }
     public string? Descricao { get; set; }
+    public int? UsuarioId { get; set; }
+    public UsuarioModel? Usuario { get; set; }
 }

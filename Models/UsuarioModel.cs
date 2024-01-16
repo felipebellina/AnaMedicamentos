@@ -20,6 +20,8 @@ public class UsuarioModel
     public string? Senha { get; set; }
     public DateTime? DataDeCadastro { get; set; }
     public DateTime? DataAtualização { get; set; }
+    public virtual List<MedicamentoModel>? Medicamentos { get; set; }
+
     public bool SenhaValida (string senha)
     {
         return Senha.Equals(senha.GerarHash());
