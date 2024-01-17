@@ -19,7 +19,7 @@ public class UsuarioModel
     [Required(ErrorMessage ="Digite a senha do usuário")]
     public string? Senha { get; set; }
     public DateTime? DataDeCadastro { get; set; }
-    public DateTime? DataAtualização { get; set; }
+    public DateTime? DataAtualizacao { get; set; }
     public virtual List<MedicamentoModel>? Medicamentos { get; set; }
 
     public bool SenhaValida (string senha)

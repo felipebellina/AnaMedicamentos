@@ -41,7 +41,7 @@ public class UsuarioRepositorio : IUsuarioRepositorio
         }
 
         usuarioDB.SetNovaSenha(alterarSenhaModel.NovaSenha);
-        usuarioDB.DataAtualização = DateTime.Now;
+        usuarioDB.DataAtualizacao = DateTime.Now;
 
         _dbContext.Usuarios.Update(usuarioDB);
         _dbContext.SaveChanges();
@@ -78,7 +78,7 @@ public class UsuarioRepositorio : IUsuarioRepositorio
             usuarioDB.Email = usuario.Email;
             usuarioDB.Login = usuario.Login;
             usuarioDB.Perfil = usuario.Perfil;
-            usuarioDB.DataAtualização = DateTime.Now;
+            usuarioDB.DataAtualizacao = DateTime.Now;
         }
 
         _dbContext.Usuarios.Update(usuarioDB);
