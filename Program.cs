@@ -23,6 +23,7 @@ builder.Services.AddSession(o =>
 var connString = builder.Configuration.GetConnectionString("DataBase");
 
 builder.Services.AddEntityFrameworkSqlServer().AddDbContext<MedicamentoDbContext>(opt => opt.UseSqlServer(connString));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -63,6 +63,6 @@ public class MedicamentoRepositorio : IMedicamentoRepositorio
 
     public List<MedicamentoModel> ListarTodos(int usuarioId)
     {
-        return _dbContext.Medicamentos.Where(x => x.UsuarioId == usuarioId).ToList();
+        return _dbContext.Medicamentos.Where(x => x.UsuarioId == usuarioId).OrderBy(x => x.NomeMedicamento).ToList();
     }
 }

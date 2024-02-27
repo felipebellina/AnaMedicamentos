@@ -50,7 +50,7 @@ namespace ControleMedicamentos.Migrations
 
                     b.HasIndex("UsuarioId");
 
-                    b.ToTable("Medicamentos");
+                    b.ToTable("Medicamentos", (string)null);
                 });
 
             modelBuilder.Entity("ControleMedicamentos.Models.UsuarioModel", b =>
@@ -88,7 +88,7 @@ namespace ControleMedicamentos.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Usuarios");
+                    b.ToTable("Usuarios", (string)null);
                 });
 
             modelBuilder.Entity("ControleMedicamentos.Models.MedicamentoModel", b =>
